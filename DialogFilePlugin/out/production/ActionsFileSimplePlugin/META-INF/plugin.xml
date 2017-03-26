@@ -1,0 +1,42 @@
+<idea-plugin version="2">
+  <id>com.littlefishlabs.ide.plugin</id>
+  <name>FirstSimplePlugin</name>
+  <version>1.0</version>
+  <vendor email="pameiupip@gmail.com" url="https://github.com/pamepeixinho">Little Fish Labs</vendor>
+
+  <description><![CDATA[
+      Enter short description for your plugin here.<br>
+      <em>most HTML tags may be used</em>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="141.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+
+  <!-- enable plugin in all products-->
+  <depends>com.intellij.modules.lang</depends>
+
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!--<toolWindow id="Teste" icon="null" anchor="right" factoryClass="SimpleForm"/>-->
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="diskread.ReadCurrentFile" class="ReadCurrentFile" text="Read current file from Disk"
+      description="trying this tutorial http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes">
+      <add-to-group group-id="ToolsMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl meta R"/>
+    </action>
+  </actions>
+
+</idea-plugin>
