@@ -1,7 +1,7 @@
 <idea-plugin version="2">
-  <id>com.littlefishlabs.ide.plugin</id>
-  <name>FirstSimplePlugin</name>
-  <version>1.0</version>
+  <id>com.littlefishlabs.ide.pluginDialog</id>
+  <name>DialogFilePlugin</name>
+  <version>1.2</version>
   <vendor email="pameiupip@gmail.com" url="https://github.com/pamepeixinho">Little Fish Labs</vendor>
 
   <description><![CDATA[
@@ -26,18 +26,17 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
-    <toolWindow id="teste" secondary="true" icon="myToolWindowIcons/plus.png" anchor="right"
-      factoryClass="myToolWindow.MyToolWindowFactory"/>
+    <toolWindow id="MyToolWindow" anchor="right" factoryClass="myToolWindow.SimpleToolWindowFactory"/>
   </extensions>
 
-  <application-components>
-    <component>
-      <implementation-class>PluginComponent</implementation-class>
-    </component>
-  </application-components>
+  <!--<application-components>-->
+    <!--<component>-->
+      <!--<implementation-class>PluginComponent</implementation-class>-->
+    <!--</component>-->
+  <!--</application-components>-->
 
   <actions>
-    <action id="diskread.ReadCurrentFile" class="ReadCurrentFile" text="Read current file from Disk2"
+    <action id="diskread.ReadCurrentFileDialog" class="ReadCurrentFile" text="WOW Read current file from Disk"
       description="trying this tutorial http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes">
       <add-to-group group-id="ToolsMenu" anchor="first"/>
       <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl meta R"/>

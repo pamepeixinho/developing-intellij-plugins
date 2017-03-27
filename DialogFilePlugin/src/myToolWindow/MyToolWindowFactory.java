@@ -43,6 +43,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
     });
   }
 
+  @Override
   // Create the tool window content.
   public void createToolWindowContent(Project project, ToolWindow toolWindow) {
     myToolWindow = toolWindow;

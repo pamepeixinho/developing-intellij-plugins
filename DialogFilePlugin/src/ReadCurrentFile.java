@@ -19,7 +19,7 @@ public class ReadCurrentFile extends AnAction {
 
 		final Project project = e.getProject();
 
-		String txt= Messages.showInputDialog(project, "What is your Doubt?", "Input your query", Messages.getQuestionIcon());
+		String txt = Messages.showInputDialog(project, "What is your Doubt?", "Input Your Query", Messages.getQuestionIcon());
 //		Messages.showMessageDialog(project, "Hello, " + txt + "!\n I am glad to see you.", "Information", Messages.getInformationIcon());
 
 		if (project == null) {
