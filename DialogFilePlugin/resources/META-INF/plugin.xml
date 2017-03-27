@@ -24,15 +24,20 @@
   <!-- enable plugin in all products-->
   <depends>com.intellij.modules.lang</depends>
 
-
   <extensions defaultExtensionNs="com.intellij">
-    <!--<toolWindow id="Teste" icon="null" anchor="right" factoryClass="SimpleForm"/>-->
     <!-- Add your extensions here -->
+    <toolWindow id="teste" secondary="true" icon="myToolWindowIcons/plus.png" anchor="right"
+      factoryClass="myToolWindow.MyToolWindowFactory"/>
   </extensions>
 
+  <application-components>
+    <component>
+      <implementation-class>PluginComponent</implementation-class>
+    </component>
+  </application-components>
+
   <actions>
-    <!-- Add your actions here -->
-    <action id="diskread.ReadCurrentFile" class="ReadCurrentFile" text="Read current file from Disk"
+    <action id="diskread.ReadCurrentFile" class="ReadCurrentFile" text="Read current file from Disk2"
       description="trying this tutorial http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes">
       <add-to-group group-id="ToolsMenu" anchor="first"/>
       <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl meta R"/>

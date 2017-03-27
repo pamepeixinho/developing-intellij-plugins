@@ -1,16 +1,11 @@
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
-import com.intellij.openapi.vfs.VirtualFile;
 
-import java.io.*;
 
 /**
  * Created by PamelaPeixinho on 19/03/17.
@@ -48,5 +43,7 @@ public class ReadCurrentFile extends AnAction {
 
 		String currentText = document.getText();
 		System.out.print(currentText);
+
+
 	}
 }
