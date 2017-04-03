@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.littlefishlabs.ide.pluginDialog</id>
   <name>DialogFilePlugin</name>
-  <version>1.2</version>
+  <version>1.3</version>
   <vendor email="pameiupip@gmail.com" url="https://github.com/pamepeixinho">Little Fish Labs</vendor>
 
   <description><![CDATA[
@@ -36,8 +36,8 @@
   <!--</application-components>-->
 
   <actions>
-    <action id="diskread.ReadCurrentFileDialog" class="ReadCurrentFile" text="WOW Read current file from Disk"
-      description="trying this tutorial http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes">
+    <action id="diskread.ReadCurrentFileDialog" class="ReadCurrentFile" text="ToolWindow + PSI extraction"
+      description="First toolwindow in plugin and extracting PSI of current file">
       <add-to-group group-id="ToolsMenu" anchor="first"/>
       <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl meta R"/>
     </action>

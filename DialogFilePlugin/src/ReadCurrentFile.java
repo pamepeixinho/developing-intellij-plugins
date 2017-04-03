@@ -1,5 +1,3 @@
-import com.intellij.lang.ASTNode;
-import com.intellij.lang.FileASTNode;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.editor.Document;
@@ -7,20 +5,20 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
-import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiDocumentManager;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiJavaFile;
+import com.intellij.psi.PsiImportList;
+import com.intellij.psi.PsiImportStatement;
 import com.intellij.psi.PsiMethod;
-import com.intellij.psi.PsiPackage;
-import com.intellij.psi.search.searches.ReferencesSearch;
-import java.util.Arrays;
+import com.intellij.psi.PsiRecursiveElementWalkingVisitor;
+import com.intellij.psi.PsiTypeElement;
+import com.intellij.psi.javadoc.PsiDocComment;
 
 
 /**
  * Created by PamelaPeixinho on 19/03/17.
- * This simple plugin (with actions) was created following this tutorial:
- * See <a href="http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes">intellij-plugin-tutorial</a>
+ * This simple plugin created to learn how to build an ToolWindow and extract PSI of files
  */
 public class ReadCurrentFile extends AnAction {
 
@@ -53,29 +51,58 @@ public class ReadCurrentFile extends AnAction {
 			return;
 		}
 //---------TESTING extract PSI
-//		PsiFile teste = e.getData(LangDataKeys.PSI_FILE);
-		PsiFile psiFile = PsiDocumentManager.getInstance(project).getPsiFile(document);
-		System.out.print(Arrays.toString(psiFile.getParent().getVirtualFile().getBOM()));
-		System.out.print(psiFile.getParent().getVirtualFile().getCanonicalFile().getCharset());
 
-		assert psiFile != null;
+		PsiFile psiFile = PsiDocumentManager.getInstance(project).getPsiFile(document);
+
+//		System.out.print(Arrays.toString(psiFile.getParent().getVirtualFile().getBOM()));
+//		System.out.print(psiFile.getParent().getVirtualFile().getCanonicalFile().getCharset());
 
 		System.out.println(psiFile.getLanguage());
 		System.out.println(psiFile.getFileType());
-		FileASTNode astFileNodes = psiFile.getNode();
-		ASTNode node = astFileNodes.getFirstChildNode().getTreeNext();
-		System.out.println(node);
-		System.out.println("-----");
-		PsiJavaFile javaFile = (PsiJavaFile) psiFile.getContainingFile();
-		PsiPackage psiPackage = JavaPsiFacade.getInstance(project).findPackage(javaFile.getPackageName());
-		System.out.println("psiPackage"  + psiPackage);
 
-		ReferencesSearch.search()
+//		FileASTNode astFileNodes = psiFile.getNode();
+//		ASTNode node = astFileNodes.getFirstChildNode().getTreeNext();
+//		System.out.println(node);
+//		System.out.println("-----");
+//		PsiJavaFile javaFile = (PsiJavaFile) psiFile.getContainingFile();
+//		System.out.println("psiPackage"  + psiPackage);
+
+
+//		List x = new List();
+		psiFile.accept(new PsiRecursiveElementWalkingVisitor(){
+			@Override
+			public void visitElement(PsiElement element) {
+
+//				----- JAVA ----
+				if (element instanceof PsiMethod) {
+					System.out.println("psi method = " + ((PsiMethod)element).getNameIdentifier().toString());
+				} else if (element instanceof PsiImportList){
+					for (PsiImportStatement importStatement : ((PsiImportList)element).getImportStatements()){
+						System.out.println("psi PsiImportList = " + importStatement.getQualifiedName());
+					}
+				} else if (element instanceof PsiDocComment){
+					System.out.println("psi psiDocComment Owner = " + ((PsiDocComment)element).getOwner().getName());
+					System.out.println("psi psiDocComment = " + ((PsiDocComment)element).getText());
+				} else if (element instanceof PsiTypeElement) {
+					System.out.println("psi psiTypeElement  = " + ((PsiTypeElement)element).getType().toString());
+				} else {
+//					System.out.println("psi element = " + element.toString());
+				}
+
+//				----- Kotlin ----
+
+//				if (element instanceof )
+
+
+				super.visitElement(element);
+			}
+		});
+
 //---------------------------
 //		JavaFileType.INSTANCE;
 
-		String currentText = document.getText();
-		System.out.print(currentText);
+//		String currentText = document.getText();
+//		System.out.print(currentText);
 
 
 	}
